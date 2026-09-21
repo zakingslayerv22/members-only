@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= siteTitle %> | <%= pageTitle %>
+    </title>
+</head>
+
+<body>
+    <div>
+        <form method="POST" action="<%= formActionSubmit %>">
+            <label for="firstName">Firstname
+                <input type="text" id="firstName" name="firstName" placeholder="First Name"
+                    value="<%= typeof user !== 'undefined' && user ? user.firstName : ''  %>" required>
+            </label>
+            <label for="lastName">Lastname
+                <input type="text" id="lastName" name="lastName" placeholder="Last Name"
+                    value="<%= typeof user !== 'undefined' && user ? user.lastName : ''  %>" required>
+            </label>
+            <label for="email">Email
+                <input type="email" id="email" name="email" placeholder="Email"
+                    value="<%= typeof user !== 'undefined' && user ? user.email : ''  %>" required>
+            </label>
+            <label for="password">Password
+                <input type="password" id="password" name="password" placeholder="Password"
+                    value="<%= typeof user !== 'undefined' &&  user ? user.password : ''  %>" required>
+            </label>
+            <label for="confirmPassword">Confirm Password
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password"
+                    value="<%= typeof user !== 'undefined' && user ? user.confirmPassword : ''  %>" required>
+            </label>
+            <button><%= action %></button>
+        </form>
+    </div>
+
+</body>
+
+</html>
