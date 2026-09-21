@@ -3,11 +3,15 @@ const app = express();
 
 const path = require("node:path");
 
+const usersRouter = require("./routes/usersRouter");
+
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
+
+app.use("/users", usersRouter);
 
 const PORT = process.env.PORT || 3000;
 
