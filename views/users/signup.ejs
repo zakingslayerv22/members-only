@@ -10,6 +10,10 @@
 </head>
 
 <body>
+    <span class="errors">
+        <%- include("../partials/errors.ejs") %>
+    </span>
+
     <div>
         <form method="POST" action="<%= formActionSubmit %>">
             <label for="firstName">Firstname
