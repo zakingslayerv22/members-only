@@ -38,10 +38,23 @@ const createUser = async (req, res, next) => {
       email,
       password,
     });
-    console.log(newUser);
+
+    req.session.loginPageData = {
+      user: { email },
+      action: "Login",
+      formActionSubmit: "/login",
+      successMessage:
+        "Registration successful. Login to your account to start sending messages.",
+    };
+
+    res.redirect("/users/login");
   } catch (error) {
-    console.error(error);
-    next(error);
+    console.error("Signup error:", error);
+
+    return res.render("/users/signup", {
+      errors: ["Registration failed. Please try again later."],
+      user: req.body,
+    });
   }
 };
 
