@@ -58,7 +58,25 @@ const createUser = async (req, res, next) => {
   }
 };
 
+const getLoginForm = (req, res) => {
+  //Grab the data from the session or set defaults if they visited the page directly
+  const flashData = req.session.loginPageData || {};
+
+  // Clear the session immediately
+  delete req.session.loginPageData;
+
+  res.render("users/login", {
+    siteTitle,
+    pageTitle: "Log In",
+    user: flashData.user || null,
+    formActionSubmit: flashData.formActionSubmit || "/login",
+    action: flashData.action || "Login",
+    successMessage: flashData.successMessage || null,
+  });
+};
+
 module.exports = {
   getSignupForm,
   createUser,
+  getLoginForm,
 };
