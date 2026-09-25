@@ -3,6 +3,7 @@ const usersRouter = Router();
 const { validateUserSignupInput } = require("../validators/userValidator");
 const controller = require("../controllers/userController");
 
+usersRouter.get("/login", controller.getLoginForm);
 usersRouter.post("/", validateUserSignupInput, controller.createUser);
 usersRouter.get("/signup", controller.getSignupForm);
 
