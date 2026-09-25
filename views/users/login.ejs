@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= siteTitle %> | <%= pageTitle %>
+    </title>
+</head>
+
+<body>
+    <h2><%= pageTitle %></h2>
+    <span class="info-messages">
+        <%- include("../partials/errors.ejs") %>
+        <%- include("../partials/successes.ejs") %>
+    </span>
+    <div>
+        <form method="POST" action="<%= formActionSubmit %>">
+            <label for="email">Email
+                <input type="text" id="email" name="email" placeholder="Email Address"
+                    value="<%= typeof user !== 'undefined' && user ? user.email : ''  %>" required>
+            </label>
+
+            <label for="password">Password
+                <input type="password" id="password" name="password" placeholder="Password" required>
+            </label>
+
+            <button><%= action %></button>
+        </form>
+        <span>Don't have an account yet? <a href="/users/signup">Sign Up</a></span>
+    </div>
+
+</body>
+
+</html>
