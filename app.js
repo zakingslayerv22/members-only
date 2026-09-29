@@ -3,8 +3,10 @@ const app = express();
 const pool = require("./db/pool");
 
 const path = require("node:path");
+
 const session = require("express-session");
 const pgSession = require("connect-pg-simple")(session);
+const passport = require("./config/passport");
 
 const usersRouter = require("./routes/usersRouter");
 
@@ -28,6 +30,8 @@ app.use(
     cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 },
   })
 );
+
+app.use(passport.session());
 
 app.use("/users", usersRouter);
 
