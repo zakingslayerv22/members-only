@@ -1,5 +1,6 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
+const bcrypt = require("bcryptjs");
 const db = require("../db/usersQueries");
 
 passport.use(
@@ -30,15 +31,17 @@ passport.use(
 );
 
 passport.serializeUser((user, done) => {
-  done(null, user);
+  done(null, user.id);
 });
 
 passport.deserializeUser(async (id, done) => {
   try {
     const user = await db.selectUserById(id);
-
+    // console.log(user.id);
     done(null, user);
   } catch (err) {
     done(err);
   }
 });
+
+module.exports = passport;
