@@ -3,7 +3,7 @@ const pool = require("./pool");
 const queries = {
   createUser:
     "INSERT INTO users (first_name, last_name, email, password) VALUES ($1, $2, $3, $4) RETURNING id;",
-  selectUserById: "SELECT * FROM users WHERE email = $1",
+  selectUserById: "SELECT * FROM users WHERE id = $1",
   selectUserByEmail: "SELECT * FROM users WHERE email = $1",
 };
 
@@ -23,7 +23,7 @@ const createUser = async (userObject) => {
 const selectUserById = async (userId) => {
   const { rows } = await pool.query(queries.selectUserById, [userId]);
 
-  console.log(rows);
+  // console.log(rows);
   return rows[0];
 };
 
