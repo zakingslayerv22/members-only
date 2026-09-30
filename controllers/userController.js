@@ -31,7 +31,7 @@ const createUser = async (req, res, next) => {
   const { firstName, lastName, email, password } = req.body;
 
   try {
-    console.log(req.body);
+    // console.log(req.body);
     const newUser = await userService.createUserAccount({
       firstName,
       lastName,
@@ -42,7 +42,7 @@ const createUser = async (req, res, next) => {
     req.session.loginPageData = {
       user: { email },
       action: "Login",
-      formActionSubmit: "/login",
+      formActionSubmit: "/users/login",
       successMessage:
         "Registration successful. Login to your account to start sending messages.",
     };
@@ -69,7 +69,7 @@ const getLoginForm = (req, res) => {
     siteTitle,
     pageTitle: "Log In",
     user: flashData.user || null,
-    formActionSubmit: flashData.formActionSubmit || "/login",
+    formActionSubmit: flashData.formActionSubmit || "/users/login",
     action: flashData.action || "Login",
     successMessage: flashData.successMessage || null,
   });
