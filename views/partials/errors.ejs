@@ -1,7 +1,7 @@
 <% if (locals.errors) {%>
 <ul>
     <% errors.forEach((error) => { %>
-    <li><%= error.msg %></li>
+    <li><%= typeof(error) === "string" ? error : error.msg %></li>
     <% }); %>
 </ul>
 <% } %>
