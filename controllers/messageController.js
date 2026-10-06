@@ -1,14 +1,16 @@
 const db = require("../db/messagesQueries");
 
-const getAllMessages = async (req, res) => {
-  const messages = await db.getAllMessages();
+const getNewestMessagesWithSenderNames = async (req, res) => {
+  const messagesAndSenderNames = await db.getNewestMessagesWithSenderNames();
+
+  console.log(messagesAndSenderNames);
 
   res.render("messages/index", {
-    messages,
+    messagesAndSenderNames,
     pageTitle: "All Messages",
   });
 };
 
 module.exports = {
-  getAllMessages,
+  getNewestMessagesWithSenderNames,
 };
