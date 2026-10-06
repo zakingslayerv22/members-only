@@ -1,19 +1,17 @@
 const pool = require("./pool");
 
 const queries = {
-  getAllMessages: "SELECT * FROM messages ORDER BY created_at DESC;",
-  getNewestMessages:
-    "SELECT * FROM messages ORDER BY created_at DESC LIMIT ($1);",
+  getMessagesWithSenderNames:
+    "SELECT messages.*, users.first_name, users.last_name FROM messages INNER JOIN users ON messages.user_id = users.id ORDER BY messages.created_at DESC LIMIT ($1)",
 };
 
-const getAllMessages = async () => {
-  const { rows } = await pool.query(queries.getAllMessages);
+const getNewestMessagesWithSenderNames = async (limit) => {
+  const { rows } = await pool.query(queries.getMessagesWithSenderNames, [
+    limit,
+  ]);
   return rows;
 };
 
-const getNewestMessages = async (limit) => {
-  const { rows } = await pool.query(queries.getNewestMessages, [limit]);
-  return rows;
+module.exports = {
+  getNewestMessagesWithSenderNames,
 };
-
-module.exports = { getAllMessages, getNewestMessages };
