@@ -34,6 +34,11 @@ app.use(
 
 app.use(passport.session());
 
+app.use((req, res, next) => {
+  res.locals.siteTitle = "Members Only Message Board";
+  next();
+});
+
 app.use("/users", usersRouter);
 app.use("/messages", messagesRouter);
 
