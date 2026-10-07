@@ -11,6 +11,8 @@ const passport = require("./config/passport");
 const usersRouter = require("./routes/usersRouter");
 const messagesRouter = require("./routes/messagesRouter");
 
+const checkUserAuthentication = require("./middlewares/authentication");
+
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
@@ -40,7 +42,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/users", usersRouter);
-app.use("/messages", messagesRouter);
+app.use("/messages", checkUserAuthentication, messagesRouter);
 
 const PORT = process.env.PORT || 3000;
 
