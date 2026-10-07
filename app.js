@@ -9,6 +9,7 @@ const pgSession = require("connect-pg-simple")(session);
 const passport = require("./config/passport");
 
 const usersRouter = require("./routes/usersRouter");
+const messagesRouter = require("./routes/messagesRouter");
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -34,6 +35,7 @@ app.use(
 app.use(passport.session());
 
 app.use("/users", usersRouter);
+app.use("/messages", messagesRouter);
 
 const PORT = process.env.PORT || 3000;
 
