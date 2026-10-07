@@ -2,6 +2,6 @@ const { Router } = require("express");
 const messagesRouter = Router();
 const controller = require("../controllers/messageController");
 
-messagesRouter.get("/", controller.getAllMessages);
+messagesRouter.get("/", controller.getNewestMessagesWithSenderNames);
 
 module.exports = messagesRouter;
