@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= siteTitle %> | <%= pageTitle %>
+    </title>
+</head>
+
+<body>
+
+    <h2>Welcome User</h2>
+    <span class="info-messages">
+        <%- include("../partials/errors.ejs") %>
+        <%- include("../partials/successes.ejs") %>
+    </span>
+    <div>
+        <a href="/messages/new" class="btn">Send New Message</a>
+        <div class="messages-container">
+            <% if (locals.messagesAndSenderNames){ %>
+            <% messagesAndSenderNames.forEach((message) => { %>
+            <div class="message-card">
+                <a href="/messages/<%= message.id %>">
+                    <p><strong><%= message.msg_title %></strong></p>
+                    <p><%= message.msg_body %></p>
+                    <p><%= message.created_at %></p>
+                    <p>Sent by: <%= message.first_name %> <%= message.last_name %></p>
+                </a>
+            </div>
+            <% }) %>
+            <% } else {%>
+            <p>No messages yet. Be the first to <a href="/messages/new" class="btn">send an anonymous message</a></p>
+            <% } %>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
