@@ -10,10 +10,11 @@
 </head>
 
 <body>
-    <span class="errors">
+    <h2><%= pageTitle %></h2>
+    <span class="info-messages">
         <%- include("../partials/errors.ejs") %>
+        <%- include("../partials/successes.ejs") %>
     </span>
-
     <div>
         <form method="POST" action="<%= formActionSubmit %>">
             <label for="firstName">Firstname
@@ -38,6 +39,7 @@
             </label>
             <button><%= action %></button>
         </form>
+        <span>Already have an account? <a href="/users/login">Log In</a></span>
     </div>
 
 </body>
