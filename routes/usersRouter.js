@@ -13,6 +13,8 @@ usersRouter.post(
   })
 );
 
+usersRouter.get("/logout", controller.logoutUser);
+
 usersRouter.get("/login", controller.getLoginForm);
 usersRouter.post("/", validateUserSignupInput, controller.createUser);
 usersRouter.get("/signup", controller.getSignupForm);
