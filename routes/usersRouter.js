@@ -7,7 +7,7 @@ const controller = require("../controllers/userController");
 usersRouter.post(
   "/login",
   passport.authenticate("local", {
-    successRedirect: "/messages/",
+    successRedirect: "/messages",
     failureRedirect: "/users/login",
     failureMessage: true,
   })
