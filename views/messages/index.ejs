@@ -27,7 +27,9 @@
                     <p><strong><%= message.msg_title %></strong></p>
                     <p><%= message.msg_body %></p>
                     <p><%= message.created_at %></p>
+                    <% if (locals.currentUser && currentUser.is_club_member){ %>
                     <p>Sent by: <%= message.first_name %> <%= message.last_name %></p>
+                    <% } %>
                 </a>
             </div>
             <% }) %>
