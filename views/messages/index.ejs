@@ -20,7 +20,7 @@
         <a href="/messages/new" class="btn">Send New Message</a>
         <a href="/users/logout" class="btn">Logout</a>
         <div class="messages-container">
-            <% if (locals.messagesAndSenderNames){ %>
+            <% if (locals.messagesAndSenderNames.length){ %>
             <% messagesAndSenderNames.forEach((message) => { %>
             <div class="message-card">
                 <a href="/messages/<%= message.id %>">
