@@ -38,6 +38,7 @@ app.use(passport.session());
 
 app.use((req, res, next) => {
   res.locals.siteTitle = "Members Only Message Board";
+  res.locals.currentUser = req.user;
   next();
 });
 
