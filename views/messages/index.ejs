@@ -11,14 +11,22 @@
 
 <body>
 
-    <h2>Welcome User</h2>
+    <h2><%= siteTitle %></h2>
+    <p><%= typeof locals.currentUser !== 'undefined' &&  currentUser ? `Welcome ${currentUser.first_name}` : "Hello Guest" %>
+    </p>
     <span class="info-messages">
         <%- include("../partials/errors.ejs") %>
         <%- include("../partials/successes.ejs") %>
     </span>
     <div>
+        <% if (typeof locals.currentUser !== 'undefined' &&  currentUser){ %>
         <a href="/messages/new" class="btn">Send New Message</a>
         <a href="/users/logout" class="btn">Logout</a>
+        <% } else {%>
+        <a href="/users/signup" class="btn">Sign Up</a>
+        <a href="/users/login" class="btn">Login</a>
+        <% } %>
+
         <div class="messages-container">
             <% if (locals.messagesAndSenderNames.length){ %>
             <% messagesAndSenderNames.forEach((message) => { %>
