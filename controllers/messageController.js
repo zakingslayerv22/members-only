@@ -11,6 +11,10 @@ const getNewestMessagesWithSenderNames = async (req, res) => {
   });
 };
 
+const getNewMessageForm = (req, res) => {
+  res.render("messages/newMessage", { pageTitle: "Create New Message" });
+};
+
 module.exports = {
   getNewestMessagesWithSenderNames,
 };
