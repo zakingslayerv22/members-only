@@ -8,6 +8,7 @@ const session = require("express-session");
 const pgSession = require("connect-pg-simple")(session);
 const passport = require("./config/passport");
 
+const homeRouter = require("./routes/homeRouter");
 const usersRouter = require("./routes/usersRouter");
 const messagesRouter = require("./routes/messagesRouter");
 
@@ -42,6 +43,7 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use("/", homeRouter);
 app.use("/users", usersRouter);
 app.use("/messages", checkUserAuthentication, messagesRouter);
 
