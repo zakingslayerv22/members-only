@@ -1,4 +1,5 @@
 const db = require("../db/messagesQueries");
+const { validationResult } = require("express-validator");
 
 const getNewestMessagesWithSenderNames = async (req, res) => {
   const messagesAndSenderNames = await db.getNewestMessagesWithSenderNames();
@@ -12,9 +13,14 @@ const getNewestMessagesWithSenderNames = async (req, res) => {
 };
 
 const getNewMessageForm = (req, res) => {
-  res.render("messages/newMessage", { pageTitle: "Create New Message" });
+  res.render("messages/create", {
+    pageTitle: "Send New Message",
+    formActionSubmit: "/messages",
+    action: "Send",
+  });
 };
 
 module.exports = {
   getNewestMessagesWithSenderNames,
+  getNewMessageForm,
 };
