@@ -20,7 +20,40 @@ const getCreateMessageForm = (req, res) => {
   });
 };
 
+const createMessagePost = async (req, res) => {
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    console.log(errors.array());
+    return res.status(400).render("messages/create", {
+      pageTitle: "Send new Message",
+      formActionSubmit: `/messages`,
+      action: "Send",
+      errors: errors.array(),
+      oldData: req.body,
+    });
+  }
+
+  const { title, messageBody } = req.body;
+
+  try {
+    await db.createMessage({ title, messageBody, userId: req.user.id });
+    res.redirect("/messages");
+  } catch (error) {
+    console.error("Error Sending Message:", error);
+
+    return res.render("/users/signup", {
+      pageTitle: "Send new Message",
+      formActionSubmit: `/messages`,
+      action: "Send",
+      errors: ["Message sending failed. Please try again later."],
+      oldData: req.body,
+    });
+  }
+};
+
 module.exports = {
   getNewestMessagesWithSenderNames,
   getCreateMessageForm,
+  createMessagePost,
 };
