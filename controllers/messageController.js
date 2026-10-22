@@ -46,6 +46,8 @@ const createMessagePost = async (req, res) => {
 
   try {
     await db.createMessage({ title, messageBody, userId: req.user.id });
+
+    req.session.successMessage = "Message successfully sent.";
     res.redirect("/messages");
   } catch (error) {
     console.error("Error Sending Message:", error);
