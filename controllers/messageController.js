@@ -52,8 +52,26 @@ const createMessagePost = async (req, res) => {
   }
 };
 
+const deleteMessagePost = async (req, res) => {
+  const { id } = req.params;
+  try {
+    await db.deleteMessageById(id);
+
+    req.session.successMessage = "Message successfully deleted.";
+    res.redirect("/messages");
+  } catch (error) {
+    console.error(error);
+
+    req.session.errorMessage = [
+      "Message deleting failed. Contact admin if this issue persists.",
+    ];
+    res.redirect("/messages");
+  }
+};
+
 module.exports = {
   getNewestMessagesWithSenderNames,
   getCreateMessageForm,
   createMessagePost,
+  deleteMessagePost,
 };
