@@ -15,8 +15,7 @@
     <p><%= typeof locals.currentUser !== 'undefined' &&  currentUser ? `Welcome ${currentUser.first_name}` : "Hello Guest" %>
     </p>
     <span class="info-messages">
-        <%- include("../partials/errors.ejs") %>
-        <%- include("../partials/successes.ejs") %>
+        <%- include("../partials/alerts.ejs") %>
     </span>
     <div>
         <% if (typeof locals.currentUser !== 'undefined' &&  currentUser){ %>
