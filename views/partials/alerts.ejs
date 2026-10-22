@@ -1,7 +1,9 @@
-<% if (locals.errors) {%>
+<% if (locals.successMessage) {%>
+<div class="alert-success"><%= successMessage %></div>
+<% } else if (locals.errors) {%>
 <ul>
     <% errors.forEach((error) => { %>
     <li><%= typeof(error) === "string" ? error : error.msg %></li>
     <% }); %>
 </ul>
-<% } %>
+<% }%>
