@@ -4,11 +4,19 @@ const { validationResult } = require("express-validator");
 const getNewestMessagesWithSenderNames = async (req, res) => {
   const messagesAndSenderNames = await db.getNewestMessagesWithSenderNames();
 
+  const successMessage = req.session.successMessage ?? null;
+  const errors = req.session.errors ?? null;
+
+  delete req.session.successMessage;
+  delete req.session.errors;
+
   console.log(messagesAndSenderNames);
 
   res.render("messages/index", {
     messagesAndSenderNames,
     pageTitle: "All Messages",
+    successMessage,
+    errors,
   });
 };
 
