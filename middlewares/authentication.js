@@ -9,4 +9,13 @@ const checkUserAuthentication = (req, res, next) => {
   }
 };
 
-module.exports = checkUserAuthentication;
+const checkMemberRole = (req, res, next) => {
+  if (!req.user.is_club_member) {
+    next();
+  } else {
+    req.session.errors = ["You are already a club member!"];
+    res.redirect("/messages");
+  }
+};
+
+module.exports = { checkUserAuthentication, checkMemberRole };
