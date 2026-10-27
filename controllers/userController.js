@@ -88,9 +88,18 @@ const logoutUser = (req, res, next) => {
   });
 };
 
+const getJoinClubForm = (req, res) => {
+  res.render("users/joinClub", {
+    pageTitle: "Join The Club",
+    formActionSubmit: `/users/join-club`,
+    action: "Join Club",
+  });
+};
+
 module.exports = {
   getSignupForm,
   createUser,
   getLoginForm,
   logoutUser,
+  getJoinClubForm,
 };
