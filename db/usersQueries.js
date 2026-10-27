@@ -5,6 +5,8 @@ const queries = {
     "INSERT INTO users (first_name, last_name, email, password) VALUES ($1, $2, $3, $4) RETURNING id;",
   selectUserById: "SELECT * FROM users WHERE id = $1",
   selectUserByEmail: "SELECT * FROM users WHERE email = $1",
+  updateUserToMemberById:
+    "UPDATE users SET is_club_member = FALSE WHERE id = $1;",
 };
 
 const createUser = async (userObject) => {
@@ -34,4 +36,13 @@ const selectUserByEmail = async (userEmail) => {
   return rows[0];
 };
 
-module.exports = { createUser, selectUserById, selectUserByEmail };
+const updateUserToMemberById = async (userId) => {
+  await pool.query(queries.updateUserToMemberById, [userId]);
+};
+
+module.exports = {
+  createUser,
+  selectUserById,
+  selectUserByEmail,
+  updateUserToMemberById,
+};
