@@ -8,7 +8,7 @@ const getSignupForm = (req, res) => {
   res.render("users/signup", {
     siteTitle,
     pageTitle: "Sign up!",
-    formActionSubmit: `/users`,
+    formActionSubmit: `/users/signup`,
     action: "Signup",
   });
 };
@@ -21,7 +21,7 @@ const createUser = async (req, res, next) => {
     return res.render("users/signup", {
       siteTitle,
       pageTitle: "Sign up!",
-      formActionSubmit: `/users`,
+      formActionSubmit: `/users/signup`,
       action: "Signup",
       errors: errors.array(),
       user: req.body,

@@ -23,7 +23,7 @@ const getNewestMessagesWithSenderNames = async (req, res) => {
 const getCreateMessageForm = (req, res) => {
   res.render("messages/create", {
     pageTitle: "Send New Message",
-    formActionSubmit: "/messages",
+    formActionSubmit: "/messages/new",
     action: "Send",
   });
 };
@@ -35,7 +35,7 @@ const createMessagePost = async (req, res) => {
     console.log(errors.array());
     return res.status(400).render("messages/create", {
       pageTitle: "Send new Message",
-      formActionSubmit: `/messages`,
+      formActionSubmit: `/messages/new`,
       action: "Send",
       errors: errors.array(),
       oldData: req.body,
@@ -54,7 +54,7 @@ const createMessagePost = async (req, res) => {
 
     return res.render("/users/signup", {
       pageTitle: "Send new Message",
-      formActionSubmit: `/messages`,
+      formActionSubmit: `/messages/new`,
       action: "Send",
       errors: ["Message sending failed. Please try again later."],
       oldData: req.body,

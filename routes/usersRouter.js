@@ -29,7 +29,7 @@ usersRouter.get("/join-club", auth.checkMemberRole, controller.getJoinClubForm);
 usersRouter.get("/logout", controller.logoutUser);
 
 usersRouter.get("/login", controller.getLoginForm);
-usersRouter.post("/", validateUserSignupInput, controller.createUser);
+usersRouter.post("/signup", validateUserSignupInput, controller.createUser);
 usersRouter.get("/signup", controller.getSignupForm);
 
 module.exports = usersRouter;
