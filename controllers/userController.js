@@ -96,10 +96,57 @@ const getJoinClubForm = (req, res) => {
   });
 };
 
+const updateUserToMember = async (req, res) => {
+  const { answer } = req.body;
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    console.log(errors.array());
+    return res.render("users/joinClub", {
+      pageTitle: "Join The Club",
+      formActionSubmit: `/users/join-club`,
+      action: "Join Club",
+      previousAnswer: answer,
+      errors: errors.array(),
+    });
+  }
+
+  if (answer !== "altruism") {
+    return res.render("users/joinClub", {
+      pageTitle: "Join The Club",
+      formActionSubmit: `/users/join-club`,
+      action: "Join Club",
+      previousAnswer: answer,
+      errors: [
+        "Errr..Nice try but that isn't the quality we're seeking. Try again.",
+      ],
+    });
+  }
+
+  try {
+    await db.updateUserToMemberById(req.user.id);
+
+    req.session.successMessage = "Awesome! You are now a club member!";
+
+    res.redirect("/messages/");
+  } catch (error) {
+    console.error("Error joining club:", error);
+
+    return res.render("users/joinClub", {
+      pageTitle: "Join The Club",
+      formActionSubmit: `/users/join-club`,
+      action: "Join Club",
+      errors: ["Err....There was an error joining the club. Try again later."],
+      previousAnswer: req.body,
+    });
+  }
+};
+
 module.exports = {
   getSignupForm,
   createUser,
   getLoginForm,
   logoutUser,
   getJoinClubForm,
+  updateUserToMember,
 };
