@@ -25,7 +25,11 @@
         <a href="/users/signup" class="btn">Sign Up</a>
         <a href="/users/login" class="btn">Login</a>
         <% } %>
-
+        <div>
+            <% if (typeof locals.currentUser !== 'undefined' &&  !currentUser.is_club_member && !currentUser.is_admin){ %>
+            <a href="/users/join-club">Join Club</a>
+            <% } %>
+        </div>
         <div class="messages-container">
             <% if (locals.messagesAndSenderNames.length){ %>
             <% messagesAndSenderNames.forEach((message) => { %>

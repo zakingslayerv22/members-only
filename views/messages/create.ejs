@@ -15,6 +15,11 @@
         <a href="/">Home</a>
         <a href="/users/logout">Logout</a>
     </div>
+    <div>
+        <% if (typeof locals.currentUser !== 'undefined' &&  !currentUser.is_club_member && !currentUser.is_admin){ %>
+        <a href="/users/join-club">Join Club</a>
+        <% } %>
+    </div>
     <span class="info-messages">
         <%- include("../partials/alerts.ejs") %>
     </span>
