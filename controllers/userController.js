@@ -2,8 +2,6 @@ const db = require("../db/usersQueries");
 const { validationResult } = require("express-validator");
 const userService = require("../services/userService");
 
-const siteTitle = "Members Only Message Board";
-
 const getSignupForm = (req, res) => {
   res.render("users/signup", {
     siteTitle,
@@ -19,7 +17,6 @@ const createUser = async (req, res, next) => {
   if (!errors.isEmpty()) {
     console.log(errors.array());
     return res.render("users/signup", {
-      siteTitle,
       pageTitle: "Sign up!",
       formActionSubmit: `/users/signup`,
       action: "Signup",
@@ -52,8 +49,11 @@ const createUser = async (req, res, next) => {
     console.error("Signup error:", error);
 
     return res.render("/users/signup", {
-      errors: ["Registration failed. Please try again later."],
+      pageTitle: "Sign up!",
+      formActionSubmit: `/users/signup`,
+      action: "Signup",
       user: req.body,
+      errors: ["Registration failed. Please try again later."],
     });
   }
 };
