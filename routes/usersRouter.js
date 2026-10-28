@@ -18,6 +18,12 @@ usersRouter.post(
   })
 );
 
+usersRouter.post(
+  "/join-club",
+  validateUserAnswerInput,
+  controller.updateUserToMember
+);
+
 usersRouter.get("/join-club", auth.checkMemberRole, controller.getJoinClubForm);
 
 usersRouter.get("/logout", controller.logoutUser);
