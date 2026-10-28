@@ -36,4 +36,13 @@ const validateUserSignupInput = [
     .withMessage("Both passwords must match."),
 ];
 
-module.exports = { validateUserSignupInput };
+validateUserAnswerInput = [
+  body("answer")
+    .trim()
+    .isLength({ min: 1, max: 8 })
+    .withMessage("Answer must be between 1 and 8 characters.")
+    .isAlpha()
+    .withMessage("Answer must be alphabets only."),
+];
+
+module.exports = { validateUserSignupInput, validateUserAnswerInput };
