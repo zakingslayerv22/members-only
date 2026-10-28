@@ -1,8 +1,13 @@
 const { Router } = require("express");
 const passport = require("../config/passport");
 const usersRouter = Router();
-const { validateUserSignupInput } = require("../validators/userValidator");
+const {
+  validateUserSignupInput,
+  validateUserAnswerInput,
+} = require("../validators/userValidator");
 const controller = require("../controllers/userController");
+
+const auth = require("../middlewares/authentication");
 
 usersRouter.post(
   "/login",
@@ -12,6 +17,8 @@ usersRouter.post(
     failureMessage: true,
   })
 );
+
+usersRouter.get("/join-club", auth.checkMemberRole, controller.getJoinClubForm);
 
 usersRouter.get("/logout", controller.logoutUser);
 
