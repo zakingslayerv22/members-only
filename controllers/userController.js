@@ -148,6 +148,55 @@ const getJoinAdminsForm = (req, res) => {
   });
 };
 
+const updateMemberToAdmin = async (req, res) => {
+  const { answer } = req.body;
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    console.log(errors.array());
+    return res.render("users/joinAdmins", {
+      pageTitle: "Join The Admins",
+      formActionSubmit: `/users/join-admins`,
+      action: "Join Admins",
+      previousAnswer: answer,
+      errors: errors.array(),
+    });
+  }
+
+  if (answer !== "pacifism") {
+    return res.render("users/joinAdmins", {
+      pageTitle: "Join The Admins",
+      formActionSubmit: `/users/join-admins`,
+      action: "Join Admins",
+      previousAnswer: answer,
+      errors: [
+        "Errr..Nice try but that isn't the principle we're seeking. Try again.",
+      ],
+    });
+  }
+
+  try {
+    await db.updateMemberToAdminById(req.user.id);
+
+    req.session.successMessage = "Awesome! You are now an admin!";
+
+    res.redirect("/messages");
+  } catch (error) {
+    console.error("Error joining admins:", error);
+
+    return res.render("users/joinAdmins", {
+      pageTitle: "Join The Admins",
+      formActionSubmit: `/users/join-admins`,
+      action: "Join Admins",
+      errors: [
+        "Err....There was an error joining the admins. Try again later.",
+      ],
+      previousAnswer: req.body,
+      club,
+    });
+  }
+};
+
 module.exports = {
   getSignupForm,
   createUser,
@@ -156,4 +205,5 @@ module.exports = {
   getJoinClubForm,
   updateUserToMember,
   getJoinAdminsForm,
+  updateMemberToAdmin,
 };
