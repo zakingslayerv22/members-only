@@ -7,6 +7,7 @@ const queries = {
   selectUserByEmail: "SELECT * FROM users WHERE email = $1",
   updateUserToMemberById:
     "UPDATE users SET is_club_member = TRUE WHERE id = $1;",
+  updateMemberToAdminById: "UPDATE users SET is_admin = TRUE WHERE id = $1;",
 };
 
 const createUser = async (userObject) => {
@@ -40,9 +41,14 @@ const updateUserToMemberById = async (userId) => {
   await pool.query(queries.updateUserToMemberById, [userId]);
 };
 
+const updateMemberToAdminById = async (userId) => {
+  await pool.query(queries.updateMemberToAdminById, [userId]);
+};
+
 module.exports = {
   createUser,
   selectUserById,
   selectUserByEmail,
   updateUserToMemberById,
+  updateMemberToAdminById,
 };
