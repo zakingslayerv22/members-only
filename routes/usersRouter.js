@@ -18,6 +18,12 @@ usersRouter.post(
   })
 );
 
+usersRouter.get(
+  "/join-admins",
+  auth.checkAdminRole,
+  controller.getJoinAdminsForm
+);
+
 usersRouter.post(
   "/join-club",
   validateUserAnswerInput,
