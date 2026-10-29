@@ -4,7 +4,6 @@ const userService = require("../services/userService");
 
 const getSignupForm = (req, res) => {
   res.render("users/signup", {
-    siteTitle,
     pageTitle: "Sign up!",
     formActionSubmit: `/users/signup`,
     action: "Signup",
@@ -69,7 +68,6 @@ const getLoginForm = (req, res) => {
   delete req.session.messages;
 
   res.render("users/login", {
-    siteTitle,
     pageTitle: "Log In",
     user: flashData.user || null,
     formActionSubmit: flashData.formActionSubmit || "/users/login",
@@ -128,7 +126,7 @@ const updateUserToMember = async (req, res) => {
 
     req.session.successMessage = "Awesome! You are now a club member!";
 
-    res.redirect("/messages/");
+    res.redirect("/messages");
   } catch (error) {
     console.error("Error joining club:", error);
 
