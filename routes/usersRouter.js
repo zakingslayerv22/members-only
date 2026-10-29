@@ -18,6 +18,12 @@ usersRouter.post(
   })
 );
 
+usersRouter.post(
+  "/join-admins",
+  validateUserAnswerInput,
+  controller.updateMemberToAdmin
+);
+
 usersRouter.get(
   "/join-admins",
   auth.checkAdminRole,
