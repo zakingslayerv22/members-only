@@ -140,6 +140,14 @@ const updateUserToMember = async (req, res) => {
   }
 };
 
+const getJoinAdminsForm = (req, res) => {
+  res.render("users/joinAdmins", {
+    pageTitle: "Join The Admins",
+    formActionSubmit: `/users/join-admins`,
+    action: "Join Admins",
+  });
+};
+
 module.exports = {
   getSignupForm,
   createUser,
@@ -147,4 +155,5 @@ module.exports = {
   logoutUser,
   getJoinClubForm,
   updateUserToMember,
+  getJoinAdminsForm,
 };
