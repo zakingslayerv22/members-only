@@ -18,4 +18,12 @@ const checkMemberRole = (req, res, next) => {
   }
 };
 
-module.exports = { checkUserAuthentication, checkMemberRole };
+const checkAdminRole = (req, res, next) => {
+  if (!req.user.is_club_member) {
+    next();
+  } else {
+    req.session.errors = ["You are already an admin!"];
+    res.redirect("/messages");
+  }
+};
+module.exports = { checkUserAuthentication, checkMemberRole, checkAdminRole };
