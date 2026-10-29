@@ -10,15 +10,6 @@ const controller = require("../controllers/userController");
 const auth = require("../middlewares/authentication");
 
 usersRouter.post(
-  "/login",
-  passport.authenticate("local", {
-    successRedirect: "/messages",
-    failureRedirect: "/users/login",
-    failureMessage: true,
-  })
-);
-
-usersRouter.post(
   "/join-admins",
   validateUserAnswerInput,
   controller.updateMemberToAdmin
@@ -39,6 +30,15 @@ usersRouter.post(
 usersRouter.get("/join-club", auth.checkMemberRole, controller.getJoinClubForm);
 
 usersRouter.get("/logout", controller.logoutUser);
+
+usersRouter.post(
+  "/login",
+  passport.authenticate("local", {
+    successRedirect: "/messages",
+    failureRedirect: "/users/login",
+    failureMessage: true,
+  })
+);
 
 usersRouter.get("/login", controller.getLoginForm);
 usersRouter.post("/signup", validateUserSignupInput, controller.createUser);
