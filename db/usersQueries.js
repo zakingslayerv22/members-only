@@ -6,7 +6,7 @@ const queries = {
   selectUserById: "SELECT * FROM users WHERE id = $1",
   selectUserByEmail: "SELECT * FROM users WHERE email = $1",
   updateUserToMemberById:
-    "UPDATE users SET is_club_member = FALSE WHERE id = $1;",
+    "UPDATE users SET is_club_member = TRUE WHERE id = $1;",
 };
 
 const createUser = async (userObject) => {
