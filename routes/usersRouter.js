@@ -17,7 +17,7 @@ usersRouter.post(
 
 usersRouter.get(
   "/join-admins",
-  auth.checkAdminRole,
+  auth.checkAccessRole,
   controller.getJoinAdminsForm
 );
 
