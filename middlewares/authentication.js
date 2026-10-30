@@ -18,12 +18,15 @@ const checkMemberRole = (req, res, next) => {
   }
 };
 
-const checkAdminRole = (req, res, next) => {
-  if (!req.user.is_club_member) {
-    next();
-  } else {
-    req.session.errors = ["You are already an admin!"];
-    res.redirect("/messages");
+const checkAccessRole = (req, res, next) => {
+  if (!req.user.is_admin && req.user.is_club_member) {
+    return next();
   }
+
+  req.session.errors = req.user.is_admin
+    ? ["You are already an admin!"]
+    : ["I can't do that. You don't have the privileges to view this resource."];
+  res.redirect("/messages");
 };
-module.exports = { checkUserAuthentication, checkMemberRole, checkAdminRole };
+
+module.exports = { checkUserAuthentication, checkMemberRole, checkAccessRole };
