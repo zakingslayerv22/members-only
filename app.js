@@ -14,6 +14,8 @@ const messagesRouter = require("./routes/messagesRouter");
 
 const auth = require("./middlewares/authentication");
 
+const NotFoundError = require("./errors/NotFoundError");
+
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
@@ -46,6 +48,20 @@ app.use((req, res, next) => {
 app.use("/", homeRouter);
 app.use("/users", usersRouter);
 app.use("/messages", auth.checkUserAuthentication, messagesRouter);
+
+app.use((req, res, next) => {
+  next(new NotFoundError("Not all those who wander are lost!"));
+});
+
+app.use((err, req, res, next) => {
+  const statusCode = err.statusCode || 500;
+
+  res.status(statusCode).render("404", {
+    pageTitle:
+      statusCode === 404 ? "404 - Page not found" : "500 - Server Error",
+    errorMessage: err.message || "An unexpected error occured.",
+  });
+});
 
 const PORT = process.env.PORT || 3000;
 
