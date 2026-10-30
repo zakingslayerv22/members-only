@@ -30,6 +30,9 @@
             <a href="/users/join-club">Join Club</a>
             <% } %>
         </div>
+        <% if (typeof locals.currentUser !== 'undefined' &&  currentUser.is_club_member && !currentUser.is_admin){ %>
+        <a href="/users/join-admins">Join Admins</a>
+        <% } %>
         <div class="messages-container">
             <% if (locals.messagesAndSenderNames.length){ %>
             <% messagesAndSenderNames.forEach((message) => { %>
