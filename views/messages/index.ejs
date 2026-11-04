@@ -5,9 +5,23 @@
 
 <body>
     <%- include('../partials/header.ejs') %>
+    <div>
+        <% if (typeof locals.currentUser !== 'undefined' &&  !currentUser.is_admin && currentUser.is_club_member) {%>
+        <p>Hello <%= currentUser.first_name %>. <a href="/users/join-admins">Join</a> the admins to be able to
+            perform administrative tasks like deleting messages.</p>
+        <% } %>
 
-    <p><%= typeof locals.currentUser !== 'undefined' &&  currentUser ? `Welcome ${currentUser.first_name}` : "Hello Guest" %>
+        <% if (typeof locals.currentUser !== 'undefined' &&  !currentUser.is_club_member) {%>
+        <p>Hello <%= currentUser.first_name %>, you can start sending messages. <a href="/users/join-club">Join</a> the
+            club to see who sent what.</p>
+        <% } %>
 
+        <% if (!currentUser) {%>
+        <p>Hello stranger, only club members can send messages and see who sent what. <a href="/users/login">Login</a>
+            or <a href="/users/signup">Sign
+                Up </a>to continue.</p>
+        <% } %>
+    </div>
     <div class="messages-container">
         <% if (locals.messagesAndSenderNames.length){ %>
         <% messagesAndSenderNames.forEach((message) => { %>
