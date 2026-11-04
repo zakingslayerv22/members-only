@@ -4,15 +4,7 @@
 <%- include('../partials/head.ejs') %>
 
 <body>
-    <h2><%= pageTitle %></h2>
-    <div>
-        <a href="/" class="btn">Home</a>
-        <a href="/messages/new" class="btn">Send New Message</a>
-        <a href="/users/logout" class="btn">Logout</a>
-    </div>
-    <span class="info-messages">
-        <%- include("../partials/alerts.ejs") %>
-    </span>
+    <%- include('../partials/header.ejs') %>
     <div>
         <form method="POST" action="<%= formActionSubmit %>">
             <label for="answer">What is one principle that is important to world peace?
