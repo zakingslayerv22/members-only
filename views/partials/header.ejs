@@ -5,11 +5,15 @@
             <li><a href="/" class="btn">Home</a></li>
             <% if (typeof locals.currentUser !== 'undefined' &&  currentUser) { %>
             <li><a href="/messages/new" class="btn">New Message</a></li>
+            <% } else {%>
+            <li><a href="/users/login" class="btn">Login</a></li>
+            <li><a href="/users/signup" class="btn">Sign Up</a></li>
             <% } %>
 
             <% if (typeof locals.currentUser !== 'undefined' &&  !currentUser.is_club_member && !currentUser.is_admin){ %>
             <li><a href="/users/join-club">Join Club</a></li>
             <% } %>
+
             <% if (typeof locals.currentUser !== 'undefined' &&  currentUser.is_club_member && !currentUser.is_admin){ %>
             <li></li><a href="/users/join-admins">Join Admins</a></li>
             <% } %>
