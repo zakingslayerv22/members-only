@@ -2,7 +2,6 @@
     <h2><a href="/"><%= siteTitle %></a></h2>
     <nav>
         <ul class="nav-ul">
-            <li><a href="/" class="btn">Home</a></li>
             <% if (typeof locals.currentUser !== 'undefined' &&  currentUser) { %>
             <li><a href="/messages/new" class="btn">New Message</a></li>
             <% } else {%>
@@ -15,7 +14,7 @@
             <% } %>
 
             <% if (typeof locals.currentUser !== 'undefined' &&  currentUser.is_club_member && !currentUser.is_admin){ %>
-            <li></li><a href="/users/join-admins">Join Admins</a></li>
+            <li><a href="/users/join-admins">Join Admins</a></li>
             <% } %>
 
             <% if (typeof locals.currentUser !== 'undefined' &&  currentUser) { %>
