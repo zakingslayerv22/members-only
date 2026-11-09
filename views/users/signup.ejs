@@ -4,10 +4,9 @@
 <%- include('../partials/head.ejs') %>
 
 <body>
-    <h2><%= pageTitle %></h2>
-    <span class="info-messages">
-        <%- include("../partials/alerts.ejs") %>
-    </span>
+    <%- include('../partials/header.ejs') %>
+    <%- include('../partials/pageTitle.ejs') %>
+    <p>Sign up to start sending messages.</p>
     <div>
         <form method="POST" action="<%= formActionSubmit %>">
             <label for="firstName">Firstname
