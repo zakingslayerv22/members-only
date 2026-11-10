@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  /* border: 1px solid orange; */
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  /* height: 100vh; */
+  /* background: #0c1220; */
+}
+
+header {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 10vh;
+  border-bottom: 1px solid black;
+}
+
+.nav-ul {
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+}
+
+.container {
+  border: 2px solid green;
+}
+
+.pagetitle-ul {
+  display: flex;
+  justify-content: space-between;
+}
