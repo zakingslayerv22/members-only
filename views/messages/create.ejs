@@ -5,21 +5,23 @@
 
 <body>
     <%- include('../partials/header.ejs') %>
-    <%- include('../partials/pageTitle.ejs') %>
-    <p>Send a new message.</p>
-    <div>
-        <form method="POST" action="<%= formActionSubmit %>">
-            <label for="title">Title
-                <input type="text" id="title" name="title" placeholder="Title"
-                    value="<%= typeof locals.oldData !== 'undefined' &&  locals.oldData ? oldData.title : ''  %>">
-            </label>
-            <label for="messageBody">Message
-                <textarea name="messageBody" placeholder="Type message here..."
-                    id="messageBody"><%= typeof locals.oldData !== 'undefined' &&  locals.oldData ? oldData.messageBody : ''  %></textarea>
-            </label>
+    <div class="container">
+        <%- include('../partials/pageTitle.ejs') %>
+        <p>Send a new message.</p>
+        <div>
+            <form method="POST" action="<%= formActionSubmit %>">
+                <label for="title">Title
+                    <input type="text" id="title" name="title" placeholder="Title"
+                        value="<%= typeof locals.oldData !== 'undefined' &&  locals.oldData ? oldData.title : ''  %>">
+                </label>
+                <label for="messageBody">Message
+                    <textarea name="messageBody" placeholder="Type message here..."
+                        id="messageBody"><%= typeof locals.oldData !== 'undefined' &&  locals.oldData ? oldData.messageBody : ''  %></textarea>
+                </label>
 
-            <button><%= action %></button>
-        </form>
+                <button><%= action %></button>
+            </form>
+        </div>
     </div>
     <%- include('../partials/footer.ejs') %>
 </body>
