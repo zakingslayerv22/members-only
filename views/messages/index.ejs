@@ -5,10 +5,12 @@
 
 <body>
     <%- include('../partials/header.ejs') %>
+    <p><%= pageTitle %></p>
     <div>
         <% if (typeof locals.currentUser !== 'undefined' &&  !currentUser.is_admin && currentUser.is_club_member) {%>
-        <p>Hello <%= currentUser.first_name %>. <a href="/users/join-admins">Join</a> the admins to be able to
-            perform administrative tasks like deleting messages.</p>
+        <p>Hello <%= currentUser.first_name %>. <a href="/users/join-admins">Join</a> the admins to be able to delete
+            user
+            messages.</p>
         <% } %>
 
         <% if (typeof locals.currentUser !== 'undefined' &&  !currentUser.is_club_member) {%>
