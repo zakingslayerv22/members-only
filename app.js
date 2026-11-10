@@ -40,7 +40,7 @@ app.use(
 app.use(passport.session());
 
 app.use((req, res, next) => {
-  res.locals.siteTitle = "Members Only Message Board";
+  res.locals.siteTitle = "members-only";
   res.locals.currentUser = req.user;
   next();
 });
