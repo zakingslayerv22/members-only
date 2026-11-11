@@ -20,18 +20,36 @@ header {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 10vh;
+  height: 12vh;
   border-bottom: 1px solid black;
+  color: black;
+}
+
+header a {
+  color: black;
+}
+
+header h2,
+header nav,
+.container {
+  padding: 0px 1rem;
 }
 
 .nav-ul {
   width: 100%;
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
+}
+
+.nav-ul a {
+  text-decoration: none;
+  border: 1px solid black;
+  padding: 0.5rem;
 }
 
 .container {
   border: 2px solid green;
+  height: 70vh;
 }
 
 .pagetitle-ul {
