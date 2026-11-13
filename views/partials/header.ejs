@@ -1,27 +1,41 @@
-<header>
-    <h2><a href="/"><%= siteTitle %></a></h2>
-    <nav>
-        <ul class="nav-ul">
-            <% if (typeof locals.currentUser !== 'undefined' &&  currentUser) { %>
-            <li><a href="/messages/new" class="btn">New Message</a></li>
-            <% } else {%>
-            <li><a href="/users/login" class="btn">Login</a></li>
-            <li><a href="/users/signup" class="btn">Sign Up</a></li>
-            <% } %>
+<header class="site-header">
+    <div class="header-inner">
+        <!-- Logo: replace with an image or other content -->
+        <a href="/" class="logo">
+            <span class="logo-text"><%= siteTitle %></span>
+        </a>
 
-            <% if (typeof locals.currentUser !== 'undefined' &&  !currentUser.is_club_member && !currentUser.is_admin){ %>
-            <li><a href="/users/join-club">Join Club</a></li>
-            <% } %>
+        <label for="menu-toggle" class="hamb">
+            <span class="hamb-line"></span>
+        </label>
 
-            <% if (typeof locals.currentUser !== 'undefined' &&  currentUser.is_club_member && !currentUser.is_admin){ %>
-            <li><a href="/users/join-admins">Join Admins</a></li>
-            <% } %>
+        <!-- Mobile menu toggle -->
+        <input type="checkbox" id="menu-toggle" class="side-menu" aria-label="Toggle navigation menu"
+            aria-controls="primary-navigation">
 
-            <% if (typeof locals.currentUser !== 'undefined' &&  currentUser) { %>
-            <li><a href="/users/logout" class="btn">Logout</a></li>
-            <% } %>
-        </ul>
-    </nav>
+        <nav class="nav" id="primary-navigation" aria-label="Main navigation">
+            <ul class="menu">
+                <% if (typeof locals.currentUser !== 'undefined' &&  currentUser) { %>
+                <li><a href="/messages/new" class="btn">New Message</a></li>
+                <% } else {%>
+                <li><a href="/users/login" class="btn">Login</a></li>
+                <li><a href="/users/signup" class="btn">Sign Up</a></li>
+                <% } %>
+
+                <% if (typeof locals.currentUser !== 'undefined' &&  !currentUser.is_club_member && !currentUser.is_admin){ %>
+                <li><a href="/users/join-club">Join Club</a></li>
+                <% } %>
+
+                <% if (typeof locals.currentUser !== 'undefined' &&  currentUser.is_club_member && !currentUser.is_admin){ %>
+                <li><a href="/users/join-admins">Join Admins</a></li>
+                <% } %>
+
+                <% if (typeof locals.currentUser !== 'undefined' &&  currentUser) { %>
+                <li><a href="/users/logout" class="btn">Logout</a></li>
+                <% } %>
+            </ul>
+        </nav>
+    </div>
 </header>
 <span class="info-messages">
     <%- include("../partials/alerts.ejs") %>
