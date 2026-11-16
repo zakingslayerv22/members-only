@@ -1,58 +1,367 @@
+:root {
+  --white: #f9f9f9;
+  --black: #36383f;
+  --gray: #85888c;
+
+  --header-background: var(--black);
+  --header-text: var(--white);
+
+  --content-width: 80rem;
+}
+
+/* Global reset */
 * {
   margin: 0;
   padding: 0;
-  list-style: none;
-  /* border: 1px solid orange; */
+  box-sizing: border-box;
+  /* border: 1px solid red; */
 }
 
 body {
+  background-color: var(--white);
+  /* font-family: "Poppins", sans-serif; */
+  font-family: "Courier New", Courier, "Lucida Sans Typewriter",
+    "Lucida Typewriter", "American Typewriter", monospace;
+  letter-spacing: 0.05em;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+/* =================================
+   HEADER
+================================= */
+
+.site-header {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 1000;
+
+  background-color: var(--header-background);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 12%);
+
+  /* Makes responsiveness depend on the header's width */
+  container: main-header / inline-size;
+}
+
+.header-inner {
+  width: min(100%, var(--content-width));
+  margin-inline: auto;
+
+  position: relative;
+
   display: flex;
-  justify-content: center;
   align-items: center;
+
+  gap: clamp(0.75rem, 2cqi, 1.5rem);
+
+  padding-block: clamp(0.75rem, 2cqi, 1.25rem);
+  padding-inline: clamp(1rem, 4cqi, 2rem);
+}
+
+/* =================================
+   LOGO
+================================= */
+
+.logo {
+  display: flex;
+  align-items: center;
+
+  /* Take available space, but allow shrinking */
+  flex: 1 1 auto;
+  min-width: 0;
+
+  color: var(--header-text);
+}
+
+.logo-text {
+  display: block;
+  min-width: 0;
+
+  font-size: clamp(1.25rem, 3.5cqi, 2.25rem);
+  line-height: 1.1;
+
+  overflow-wrap: anywhere;
+}
+
+/* For when you use an image instead of text */
+.logo img {
+  display: block;
+  max-width: 100%;
+  width: auto;
+  height: clamp(1.75rem, 4cqi, 3rem);
+  object-fit: contain;
+}
+
+/* =================================
+   HAMBURGER BUTTON
+================================= */
+
+/* Visually hide the checkbox without removing keyboard access */
+.side-menu {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+
+  margin: -1px;
+  padding: 0;
+
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.hamb {
+  display: inline-grid;
+  place-items: center;
+
+  /* Do not allow the hamburger to shrink */
+  flex: 0 0 auto;
+
+  padding: 0.65rem;
+  border-radius: 0.5rem;
+
+  cursor: pointer;
+}
+
+.side-menu:focus-visible + .hamb {
+  outline: 2px solid var(--white);
+  outline-offset: 3px;
+}
+
+.hamb-line {
+  display: block;
+  position: relative;
+
+  width: 1.5rem;
+  height: 0.125rem;
+
+  background-color: var(--header-text);
+
+  transition: background-color 0.2s ease;
+}
+
+.hamb-line::before,
+.hamb-line::after {
+  content: "";
+
+  position: absolute;
+  inset-inline-start: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: var(--header-text);
+
+  transition: transform 0.2s ease;
+}
+
+.hamb-line::before {
+  transform: translateY(-0.4rem);
+}
+
+.hamb-line::after {
+  transform: translateY(0.4rem);
+}
+
+/* Animate hamburger into an X */
+
+.side-menu:checked + .hamb .hamb-line {
+  background-color: transparent;
+}
+
+.side-menu:checked + .hamb .hamb-line::before {
+  transform: rotate(45deg);
+}
+
+.side-menu:checked + .hamb .hamb-line::after {
+  transform: rotate(-45deg);
+}
+
+/* =================================
+   MOBILE NAVIGATION
+================================= */
+
+.nav {
+  position: absolute;
+  inset-block-start: 100%;
+  inset-inline: 0;
+
+  width: 100%;
+  max-height: 70dvh;
+
+  overflow-y: auto;
+  overscroll-behavior: contain;
+
+  background-color: var(--header-background);
+  box-shadow: 0 4px 8px rgb(0 0 0 / 12%);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transform: translateY(-0.5rem);
+
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+}
+
+.menu {
+  display: grid;
+  gap: 0.25rem;
+
+  padding: 0.75rem clamp(1rem, 4cqi, 2rem);
+}
+
+.menu a {
+  display: block;
+
+  padding: 0.75em 0.9em;
+  border-radius: 0.4rem;
+
+  color: var(--header-text);
+
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.menu a:hover {
+  background-color: var(--gray);
+}
+
+/* Checkbox controls menu visibility */
+
+.side-menu:checked ~ .nav {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+
+  transform: translateY(0);
+}
+
+/* =================================
+   DESKTOP NAVIGATION
+================================= */
+
+/*
+  Switch to desktop navigation when the header
+  container itself has enough width.
+*/
+
+@container main-header (min-width: 54rem) {
+  .side-menu,
+  .hamb {
+    display: none;
+  }
+
+  .nav {
+    position: static;
+
+    width: auto;
+    max-height: none;
+
+    overflow: visible;
+
+    margin-inline-start: auto;
+
+    background-color: transparent;
+    box-shadow: none;
+
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+
+    transform: none;
+  }
+
+  .menu {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    flex-wrap: wrap;
+
+    gap: clamp(0.25rem, 1.2cqi, 1rem);
+
+    padding: 0;
+  }
+
+  .menu a {
+    padding: 0.5em 0.75em;
+  }
+
+  .menu a:hover {
+    /* background-color: transparent; */
+    /* color: var(--gray); */
+    background-color: var(--gray);
+  }
+}
+
+/* Respect users who prefer reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.info-messages {
+  padding: 0.4rem;
+  margin: 0 auto;
+}
+
+.page-title {
+  padding: 1.5rem 1rem 0.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.page-info,
+.messages-container,
+footer {
+  padding: 1rem;
+}
+
+.page-info a {
+  text-decoration: underline;
+}
+
+.messages-container {
+  width: 100%;
+  display: flex;
   flex-direction: column;
   gap: 1rem;
-  /* height: 100vh; */
-  /* background: #0c1220; */
 }
 
-header {
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  height: 12vh;
-  border-bottom: 1px solid black;
-  color: black;
-}
-
-header a {
-  color: black;
-}
-
-header h2,
-header nav,
-.container {
-  padding: 0px 1rem;
-}
-
-.nav-ul {
-  width: 100%;
-  display: flex;
-  gap: 1.5rem;
-}
-
-.nav-ul a {
-  text-decoration: none;
+.message-card {
+  padding: 1rem;
   border: 1px solid black;
-  padding: 0.5rem;
 }
 
-.container {
-  border: 2px solid green;
-  height: 70vh;
+footer {
+  margin: 0 auto;
 }
 
-.pagetitle-ul {
-  display: flex;
-  justify-content: space-between;
+@media (min-width: 768px) {
+  /* Tablet screens and up */
+  .messages-container {
+    width: 40%;
+  }
 }
