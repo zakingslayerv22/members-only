@@ -23,9 +23,6 @@ body {
   font-family: "Courier New", Courier, "Lucida Sans Typewriter",
     "Lucida Typewriter", "American Typewriter", monospace;
   letter-spacing: 0.05em;
-  display: grid;
-  grid-template-rows: auto auto 1fr auto;
-  min-height: 100vh;
 }
 
 a {
@@ -315,6 +312,13 @@ ul {
   }
 }
 
+.messages-index-layout {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  /* FIND OUT WHY */
+  min-height: 100vh;
+}
+
 .main-content {
   display: flex;
   flex-direction: column;
@@ -351,8 +355,41 @@ footer {
 }
 
 .message-card {
-  padding: 1rem;
+  padding: 0.9rem;
   border: 1px solid black;
+  gap: 1rem;
+}
+
+.message-card {
+  padding: 0.9rem;
+
+  display: grid;
+  gap: 1rem;
+}
+
+.created-at {
+  justify-self: end;
+}
+
+.message-title-and-body {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.created-at,
+.sender-and-message-action {
+  font-size: 0.75rem;
+  color: gray;
+}
+
+.sender-and-message-action {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: space-between;
+}
+
+.sender {
+  align-self: end;
 }
 
 footer {
