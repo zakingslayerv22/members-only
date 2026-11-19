@@ -63,7 +63,8 @@
                     <div class="sender-and-message-action">
                         <% if (locals.currentUser && currentUser.is_club_member){ %>
 
-                        <p class="sender">Sent by: <%= message.first_name %> <%= message.last_name %></p>
+                        <p class="sender">@ <%= message.first_name %>
+                            <%= message.last_name %></p>
                         <% } %>
 
                         <% if (locals.currentUser && currentUser.is_admin){ %>
