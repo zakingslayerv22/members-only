@@ -393,7 +393,9 @@ footer {
 }
 
 footer {
-  margin: 0 auto;
+  display: grid;
+  justify-content: center;
+  border: 1px solid black;
 }
 
 @media (min-width: 768px) {
