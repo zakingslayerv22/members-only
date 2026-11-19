@@ -329,6 +329,25 @@ ul {
 .info-messages {
   padding: 0.4rem;
   margin: 0 auto;
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.alert-success,
+.alert-error-ul {
+  color: white;
+  width: 100%;
+  padding: 0.8rem;
+  text-align: center;
+}
+
+.alert-success {
+  background-color: rgb(0, 82, 0);
+}
+
+.alert-error-ul {
+  background-color: rgb(101, 2, 2);
 }
 
 .page-title {
@@ -401,6 +420,11 @@ footer {
 @media (min-width: 768px) {
   /* Tablet screens and up */
   .messages-container {
+    width: 40%;
+  }
+
+  .info-messages {
+    color: white;
     width: 40%;
   }
 }
