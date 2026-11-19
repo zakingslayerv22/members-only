@@ -4,11 +4,11 @@ const validateNewMessageInput = [
   body("title")
     .trim()
     .isLength({ min: 3, max: 50 })
-    .withMessage(`Message title must contain between 3 to 50 characters`),
+    .withMessage(`Title must contain 3 to 50 characters.`),
   body("messageBody")
     .trim()
     .isLength({ min: 3, max: 250 })
-    .withMessage(`Message body must contain between 5 to 250 characters`),
+    .withMessage(`Body must contain 5 to 250 characters.`),
 ];
 
 module.exports = { validateNewMessageInput };
