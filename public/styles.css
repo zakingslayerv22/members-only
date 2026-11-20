@@ -312,7 +312,7 @@ ul {
   }
 }
 
-.messages-index-layout {
+.content-layout {
   display: grid;
   grid-template-rows: auto auto 1fr auto;
   /* FIND OUT WHY */
@@ -324,6 +324,7 @@ ul {
   flex-direction: column;
   /* justify-content: center; */
   align-items: center;
+  padding: 1rem;
 }
 
 .info-messages {
@@ -351,19 +352,28 @@ ul {
 }
 
 .page-title {
-  padding: 1.5rem 1rem 0.5rem;
   font-size: 1.2rem;
   font-weight: bold;
 }
 
-.page-info,
-.messages-container,
-footer {
-  padding: 1rem;
+.pagetitle-and-home-ul {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
+.small-home {
+  font-size: 1.2rem;
+}
+
+.small-home a,
 .page-info a {
   text-decoration: underline;
+}
+
+.messages-container,
+.page-info {
+  padding-top: 1.5rem;
 }
 
 .messages-container {
@@ -415,11 +425,14 @@ footer {
   display: grid;
   justify-content: center;
   border: 1px solid black;
+  padding: 1rem;
 }
 
 @media (min-width: 768px) {
   /* Tablet screens and up */
-  .messages-container {
+  .messages-container,
+  .form-container,
+  .pagetitle-and-home-ul {
     width: 40%;
   }
 
