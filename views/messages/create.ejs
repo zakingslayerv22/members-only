@@ -18,11 +18,11 @@
                             value="<%= typeof locals.oldData !== 'undefined' &&  locals.oldData ? oldData.title : ''  %>">
                     </label>
                     <label for="messageBody">Message
-                        <textarea name="messageBody" placeholder="Type message here..."
+                        <textarea name="messageBody" rows="6" placeholder="Type message here..."
                             id="messageBody"><%= typeof locals.oldData !== 'undefined' &&  locals.oldData ? oldData.messageBody : ''  %></textarea>
                     </label>
 
-                    <button><%= action %></button>
+                    <button class="button-submit"><%= action %></button>
                 </form>
             </div>
 
