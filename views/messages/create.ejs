@@ -4,26 +4,32 @@
 <%- include('../partials/head.ejs') %>
 
 <body>
-    <%- include('../partials/header.ejs') %>
-    <div class="container">
-        <%- include('../partials/pageTitle.ejs') %>
-        <p>Send a new message.</p>
-        <div>
-            <form method="POST" action="<%= formActionSubmit %>">
-                <label for="title">Title
-                    <input type="text" id="title" name="title" placeholder="Title"
-                        value="<%= typeof locals.oldData !== 'undefined' &&  locals.oldData ? oldData.title : ''  %>">
-                </label>
-                <label for="messageBody">Message
-                    <textarea name="messageBody" placeholder="Type message here..."
-                        id="messageBody"><%= typeof locals.oldData !== 'undefined' &&  locals.oldData ? oldData.messageBody : ''  %></textarea>
-                </label>
+    <div class="content-layout">
 
-                <button><%= action %></button>
-            </form>
-        </div>
+        <%- include('../partials/header.ejs') %>
+        <main class="main-content message-create">
+
+            <%- include('../partials/pageTitle.ejs') %>
+            <p class="page-info">Send a new message.</p>
+            <div class="form-container">
+                <form method="POST" action="<%= formActionSubmit %>">
+                    <label for="title">Title
+                        <input type="text" id="title" name="title" placeholder="Title"
+                            value="<%= typeof locals.oldData !== 'undefined' &&  locals.oldData ? oldData.title : ''  %>">
+                    </label>
+                    <label for="messageBody">Message
+                        <textarea name="messageBody" placeholder="Type message here..."
+                            id="messageBody"><%= typeof locals.oldData !== 'undefined' &&  locals.oldData ? oldData.messageBody : ''  %></textarea>
+                    </label>
+
+                    <button><%= action %></button>
+                </form>
+            </div>
+
+        </main>
+
+        <%- include('../partials/footer.ejs') %>
     </div>
-    <%- include('../partials/footer.ejs') %>
 </body>
 
 </html>
