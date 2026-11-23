@@ -4,7 +4,7 @@ const userService = require("../services/userService");
 
 const getSignupForm = (req, res) => {
   res.render("users/signup", {
-    pageTitle: "Sign up!",
+    pageTitle: "Sign Up",
     formActionSubmit: `/users/signup`,
     action: "Signup",
   });
@@ -16,7 +16,7 @@ const createUser = async (req, res, next) => {
   if (!errors.isEmpty()) {
     console.log(errors.array());
     return res.render("users/signup", {
-      pageTitle: "Sign up!",
+      pageTitle: "Sign Up",
       formActionSubmit: `/users/signup`,
       action: "Signup",
       errors: errors.array(),
@@ -40,7 +40,7 @@ const createUser = async (req, res, next) => {
       action: "Login",
       formActionSubmit: "/users/login",
       successMessage:
-        "Registration successful. Login to your account to start sending messages.",
+        "Registration successful. Login to start sending messages.",
     };
 
     res.redirect("/users/login");
@@ -48,7 +48,7 @@ const createUser = async (req, res, next) => {
     console.error("Signup error:", error);
 
     return res.render("/users/signup", {
-      pageTitle: "Sign up!",
+      pageTitle: "Sign Up",
       formActionSubmit: `/users/signup`,
       action: "Signup",
       user: req.body,
@@ -115,9 +115,7 @@ const updateUserToMember = async (req, res) => {
       formActionSubmit: `/users/join-club`,
       action: "Join Club",
       previousAnswer: answer,
-      errors: [
-        "Errr..Nice try but that isn't the quality we're seeking. Try again.",
-      ],
+      errors: ["Nice try, but not the quality we seek. Try again."],
     });
   }
 
@@ -169,9 +167,7 @@ const updateMemberToAdmin = async (req, res) => {
       formActionSubmit: `/users/join-admins`,
       action: "Join Admins",
       previousAnswer: answer,
-      errors: [
-        "Errr..Nice try but that isn't the principle we're seeking. Try again.",
-      ],
+      errors: ["Nice try, but not the principle we seek. Try again."],
     });
   }
 
