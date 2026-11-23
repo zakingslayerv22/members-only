@@ -9,7 +9,7 @@
         <main class="main-content">
             <%- include('../partials/pageTitle.ejs') %>
             <p class="page-info">Login to continue sending messages.</p>
-            <div class="form-container">
+            <div class="form-container form-with-span">
                 <form method="POST" action="<%= formActionSubmit %>">
                     <label for="email">Email
                         <input type="text" id="email" name="email" placeholder="Email Address"
@@ -22,7 +22,7 @@
 
                     <button class="button-submit"><%= action %></button>
                 </form>
-                <span>Don't have an account yet? <a href="/users/signup">Sign Up</a>.</span>
+                <span class="span-below-form">Don't have an account yet? <a href="/users/signup">Sign Up</a>.</span>
             </div>
         </main>
         <%- include('../partials/footer.ejs') %>
