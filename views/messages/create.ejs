@@ -14,11 +14,11 @@
             <div class="form-container">
                 <form method="POST" action="<%= formActionSubmit %>">
                     <label for="title">Title
-                        <input type="text" id="title" name="title" placeholder="Title"
+                        <input type="text" id="title" name="title" maxlength="40" placeholder="Title"
                             value="<%= typeof locals.oldData !== 'undefined' &&  locals.oldData ? oldData.title : ''  %>">
                     </label>
-                    <label for="messageBody">Message
-                        <textarea name="messageBody" rows="6" placeholder="Type message here..."
+                    <label for="messageBody">Message (100 characters maximum)
+                        <textarea name="messageBody" rows="6" maxlength="100" placeholder="Type message here..."
                             id="messageBody"><%= typeof locals.oldData !== 'undefined' &&  locals.oldData ? oldData.messageBody : ''  %></textarea>
                     </label>
 
