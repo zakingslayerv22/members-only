@@ -22,7 +22,7 @@ const getNewestMessagesWithSenderNames = async (req, res) => {
 
 const getCreateMessageForm = (req, res) => {
   res.render("messages/create", {
-    pageTitle: "Send New Message",
+    pageTitle: "New Message",
     formActionSubmit: "/messages/new",
     action: "Send",
   });
@@ -34,7 +34,7 @@ const createMessagePost = async (req, res) => {
   if (!errors.isEmpty()) {
     console.log(errors.array());
     return res.status(400).render("messages/create", {
-      pageTitle: "Send new Message",
+      pageTitle: "New Message",
       formActionSubmit: `/messages/new`,
       action: "Send",
       errors: errors.array(),
