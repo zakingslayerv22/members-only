@@ -4,36 +4,41 @@
 <%- include('../partials/head.ejs') %>
 
 <body>
-    <%- include('../partials/header.ejs') %>
-    <%- include('../partials/pageTitle.ejs') %>
-    <p>Sign up to start sending messages.</p>
-    <div>
-        <form method="POST" action="<%= formActionSubmit %>">
-            <label for="firstName">Firstname
-                <input type="text" id="firstName" name="firstName" placeholder="First Name"
-                    value="<%= typeof user !== 'undefined' && user ? user.firstName : ''  %>" required>
-            </label>
-            <label for="lastName">Lastname
-                <input type="text" id="lastName" name="lastName" placeholder="Last Name"
-                    value="<%= typeof user !== 'undefined' && user ? user.lastName : ''  %>" required>
-            </label>
-            <label for="email">Email
-                <input type="email" id="email" name="email" placeholder="Email"
-                    value="<%= typeof user !== 'undefined' && user ? user.email : ''  %>" required>
-            </label>
-            <label for="password">Password
-                <input type="password" id="password" name="password" placeholder="Password"
-                    value="<%= typeof user !== 'undefined' &&  user ? user.password : ''  %>" required>
-            </label>
-            <label for="confirmPassword">Confirm Password
-                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password"
-                    value="<%= typeof user !== 'undefined' && user ? user.confirmPassword : ''  %>" required>
-            </label>
-            <button><%= action %></button>
-        </form>
-        <span>Already have an account? <a href="/users/login">Log In</a></span>
+    <div class="content-layout">
+        <%- include('../partials/header.ejs') %>
+        <main class="main-content">
+            <%- include('../partials/pageTitle.ejs') %>
+            <p class="page-info">Sign up to start sending messages. All fields are compulsory.</p>
+            <div class="form-container form-with-span">
+                <form method="POST" action="<%= formActionSubmit %>">
+                    <label for="firstName">Firstname
+                        <input type="text" id="firstName" name="firstName" placeholder="First Name"
+                            value="<%= typeof user !== 'undefined' && user ? user.firstName : ''  %>" required>
+                    </label>
+                    <label for="lastName">Lastname
+                        <input type="text" id="lastName" name="lastName" placeholder="Last Name"
+                            value="<%= typeof user !== 'undefined' && user ? user.lastName : ''  %>" required>
+                    </label>
+                    <label for="email">Email
+                        <input type="email" id="email" name="email" placeholder="Email"
+                            value="<%= typeof user !== 'undefined' && user ? user.email : ''  %>" required>
+                    </label>
+                    <label for="password">Password
+                        <input type="password" id="password" name="password" placeholder="Password"
+                            value="<%= typeof user !== 'undefined' &&  user ? user.password : ''  %>" required>
+                    </label>
+                    <label for="confirmPassword">Confirm Password
+                        <input type="password" id="confirmPassword" name="confirmPassword"
+                            placeholder="Confirm Password"
+                            value="<%= typeof user !== 'undefined' && user ? user.confirmPassword : ''  %>" required>
+                    </label>
+                    <button class="button-submit"><%= action %></button>
+                </form>
+                <span class="span-below-form">Already have an account? <a href="/users/login">Log In</a>.</span>
+            </div>
+        </main>
+        <%- include('../partials/footer.ejs') %>
     </div>
-    <%- include('../partials/footer.ejs') %>
 </body>
 
 </html>
