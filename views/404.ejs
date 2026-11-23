@@ -4,10 +4,14 @@
 <%- include('./partials/head.ejs') %>
 
 <body>
-    <%- include('./partials/header.ejs') %>
-    <%- include('./partials/pageTitle.ejs') %>
-    <p><%= errorMessage %> <a href="/">Back Home</a></p>
-    <%- include('./partials/footer.ejs') %>
+    <div class="content-layout">
+        <%- include('./partials/header.ejs') %>
+        <main class="main-content">
+            <%- include('./partials/pageTitle.ejs') %>
+            <p class="page-info"><%= errorMessage %> <a href="/">Back Home</a></p>
+        </main>
+        <%- include('./partials/footer.ejs') %>
+    </div>
 </body>
 
 </html>
