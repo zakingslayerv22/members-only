@@ -4,23 +4,27 @@
 <%- include('../partials/head.ejs') %>
 
 <body>
-    <%- include('../partials/header.ejs') %>
-    <div class="container">
-        <%- include('../partials/pageTitle.ejs') %>
-        <p>Join the admins to perform administrative tasks.</p>
-        <div>
-            <form method="POST" action="<%= formActionSubmit %>">
-                <label for="answer">What is one principle that is important to world peace?
-                    <input type="text" id="answer" name="answer" placeholder="pacifism"
-                        value="<%= typeof previousAnswer !== 'undefined' && previousAnswer ? previousAnswer : ''  %>"
-                        required>
-                </label>
+    <div class="content-layout">
+        <%- include('../partials/header.ejs') %>
+        <main class="main-content">
+            <%- include('../partials/pageTitle.ejs') %>
 
-                <button><%= action %></button>
-            </form>
-        </div>
+            <p class="page-info">Answer the question to join the admins.</p>
+            <div class="form-container">
+                <form method="POST" action="<%= formActionSubmit %>">
+                    <label for="answer">What is one principle that is important to world peace?
+                        <input type="text" id="answer" name="answer" placeholder="pacifism"
+                            value="<%= typeof previousAnswer !== 'undefined' && previousAnswer ? previousAnswer : ''  %>"
+                            required>
+                    </label>
+
+                    <button class="button-submit"><%= action %></button>
+                </form>
+            </div>
+
+        </main>
+        <%- include('../partials/footer.ejs') %>
     </div>
-    <%- include('../partials/footer.ejs') %>
 </body>
 
 </html>
