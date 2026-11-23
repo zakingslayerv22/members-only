@@ -463,17 +463,30 @@ label {
 }
 
 input,
-textarea,
-button {
+textarea {
   padding: 0.7rem;
   border: 1px solid var(--header-background);
   /* font-size: 1rem; */
 }
 
 .button-submit {
+  padding: 0.7rem;
   background-color: var(--header-background);
   color: var(--white);
   font-size: 1rem;
+  font-weight: bold;
+}
+
+.button-delete {
+  background-color: var(--header-background);
+  color: rgb(251, 236, 210);
+}
+
+.button-delete:hover {
+  color: var(--white);
+}
+
+.button-delete:active {
   font-weight: bold;
 }
 
