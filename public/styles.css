@@ -108,6 +108,10 @@ ul {
   overflow-wrap: anywhere;
 }
 
+.logo-text:hover {
+  text-decoration: underline;
+}
+
 /* For when you use an image instead of text */
 .logo img {
   display: block;
