@@ -21,7 +21,8 @@
                 <% } %>
 
                 <% if (typeof locals.currentUser !== 'undefined' &&  !currentUser.is_club_member) {%>
-                <p>Hello <%= currentUser.first_name %>, start sending messages. <a href="/users/join-club">Join</a>
+                <p>Hello <%= currentUser.first_name %>, start <a href="/messages/new">sending</a> messages. <a
+                        href="/users/join-club">Join</a>
                     the
                     club to see who sent what.</p>
                 <% } %>
