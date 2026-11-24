@@ -388,6 +388,7 @@ ul {
   font-size: 1.2rem;
 }
 
+.no-messages-yet-info a,
 .small-home a,
 .page-info a {
   text-decoration: underline;
