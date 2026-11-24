@@ -13,7 +13,7 @@
             <p class="page-info">Send a new message.</p>
             <div class="form-container">
                 <form method="POST" action="<%= formActionSubmit %>">
-                    <label for="title">Title
+                    <label for="title">Title (40 characters maximum)
                         <input type="text" id="title" name="title" maxlength="40" placeholder="Title"
                             value="<%= typeof locals.oldData !== 'undefined' &&  locals.oldData ? oldData.title : ''  %>">
                     </label>
